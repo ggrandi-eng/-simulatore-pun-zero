@@ -1,0 +1,46 @@
+{
+  "campaigns": [
+    {
+      "id": "CAMP_001",
+      "name": "Promo Pompe di Calore Agosto 2026",
+      "period_start": "2026-08-01",
+      "period_end": "2026-08-31",
+      "budget": 2000.00,
+      "target_service": "pompe_calore",
+      "channels": ["email", "whatsapp", "facebook_ads"],
+      "message_email": "Sconto 10% pompe di calore questo mese. Contattaci per preventivo.",
+      "message_whatsapp": "Ciao! Sconto speciale 10% su pompe di calore ad agosto. Interessato?",
+      "target_leads": ["CLI_002", "CLI_003"],
+      "attachments": ["brochure_pompe_calore.pdf", "immagine_promo.jpg"],
+      "status": "active",
+      "created_date": "2026-07-25",
+      "statistics": {
+        "emails_sent": 2,
+        "whatsapp_sent": 1,
+        "opens": 2,
+        "clicks": 1,
+        "responses": 1,
+        "leads_generated": 1,
+        "roi": "50% (1 lead rispetto a €2000 budget)"
+      }
+    },
+    {
+      "id": "CAMP_002",
+      "name": "Efficientamento Energetico - Lead Aziendali",
+      "period_start": "2026-08-10",
+      "period_end": "2026-08-31",
+      "budget": 1500.00,
+      "target_service": "efficientamento_energetico",
+      "channels": ["email", "linkedin_ads"],
+      "message_email": "La vostra azienda consuma troppo? Scopri come ridurre i costi con efficientamento energetico.",
+      "target_leads": ["CLI_001", "CLI_004", "CLI_005"],
+      "attachments": ["case_study_efficientamento.pdf", "calcolo_risparmio.xlsx"],
+      "status": "planning",
+      "created_date": "2026-08-05",
+      "statistics": {
+        "emails_sent": 0,
+        "status": "In preparazione"
+      }
+    }
+  ]
+}

@@ -299,6 +299,111 @@ Per ogni modulo: **CREATE / READ / UPDATE / DELETE/ARCHIVE**
 - [ ] Grafico andamento ricavi (mensile, trimestrale, annuale)
 - [ ] Verifica visualizzazione dashboard su mobile
 
+### 3.17 Costi Aziendali
+- [ ] Creare voce costo (carburante, affitto, assicurazione, telefono)
+- [ ] Assegnare costo a cantiere (appesantisce margine)
+- [ ] Categorizzare costo (operativo, fisso, trasferta)
+- [ ] Allegare ricevuta (foto, PDF)
+- [ ] Visualizzare report costi per cantiere
+- [ ] Visualizzare costi mensili totali
+- [ ] Integrazione con margine cantiere (ricavi - costi)
+- [ ] Export costi per categoria
+
+### 3.18 Campagne Commerciali
+- [ ] Creare campagna marketing (nome, periodo, budget, target)
+- [ ] Selezionare lead/clienti da contattare
+- [ ] Allegare materiale marketing (PDF brochure, immagini)
+- [ ] Scegliere canali (email, WhatsApp, SMS, social)
+- [ ] Invio automatico messaggi personalizzati
+- [ ] Tracking aperture email e link cliccati
+- [ ] Monitoraggio risposte (lead generati)
+- [ ] Calcolo ROI (budget vs lead/ordini generati)
+- [ ] Report conversione (lead → preventivi → ordini)
+- [ ] Test mobile: visualizzare cronologia campagne
+
+### 3.19 Appuntamenti e Agenda
+- [ ] Creare appuntamento (tipo: sopralluogo, riunione, follow-up)
+- [ ] Selezionare cliente, data, ora, durata, luogo
+- [ ] Assegnare responsabile (agente, manager)
+- [ ] Aggiungere note e allegati (indirizzo con GPS, mappa)
+- [ ] Invio reminder automatico (24h + 1h prima)
+- [ ] Email di conferma con mappa e contatti
+- [ ] Nel CRM: appuntamento registrato
+- [ ] Notifica mobile a responsabile
+- [ ] Post-appuntamento: documentare esito
+- [ ] Foto sopralluogo (GPS + timestamp)
+- [ ] Sincronizzazione Outlook/Google Calendar
+
+### 3.20 Agenti in Rete — Commerciale Dettagliato
+- [ ] Creare agente (nome, zona, commissione %)
+- [ ] Assegnare lead/cliente ad agente
+- [ ] Dashboard agente: propri clienti, lead, preventivi, ordini
+- [ ] Visualizzare performance: ricavi vs target
+- [ ] Ranking tra agenti (top performer)
+- [ ] Calcolo automatico provvigioni (% su ordini convertiti)
+- [ ] Integrazione payroll: provvigioni in busta paga
+- [ ] Bonus performance automatico
+- [ ] Email agente: "Provvigioni agosto: €X + bonus €Y"
+- [ ] Storico provvigioni per anno fiscale
+- [ ] Gerarchia: agente → manager → direttore
+
+### 3.21 Subappaltatori — Progetti Specializzati
+- [ ] Creare ordine subappalto (specialista + cantiere)
+- [ ] Definire lavori e importo
+- [ ] Allegare schema tecnico, capitolato
+- [ ] Invio ordine a subappaltatore
+- [ ] Tracking: registro completamento lavori (data, foto, firma)
+- [ ] Nel cantiere: "Subappalto antincendio in corso"
+- [ ] Integrazione costi: subappalto incluso in conto cantiere
+- [ ] Fatturazione subappaltatore (generazione automatica)
+- [ ] Pagamento e tracciamento contabilità
+- [ ] Nel CRM cliente: cronologia subappalti
+
+### 3.22 Reclami e Ticket
+- [ ] Cliente segnala problema (via email, WhatsApp, form)
+- [ ] Sistema crea ticket automaticamente (ID, urgenza, tipo)
+- [ ] Assegnazione automatica a tecnico competente
+- [ ] Workflow: Aperto → Analisi → In Riparazione → Risolto → Chiuso
+- [ ] Tecnico registra intervento da mobile (data, ore, foto prima/dopo)
+- [ ] Firma intervento digitale
+- [ ] Rapportino creato automaticamente da ticket
+- [ ] Email cliente: "Ticket risolto"
+- [ ] Report: quanti ticket aperti/risolti per mese
+- [ ] SLA tracking: tempo di risoluzione medio
+- [ ] Test mobile: accedere e chiudere ticket
+
+### 3.23 Gemello Digitale Impianto
+- [ ] Portale cliente: visualizzare tutti impianti installati
+- [ ] Per ogni impianto: modello, numero serie, foto, garanzia
+- [ ] Manuali tecnici e video allegati
+- [ ] Storico manutenzioni (date, interventi, tecnico)
+- [ ] Manutenzione programmata (reminder automatico)
+- [ ] Contratti attivi (scadenze, importi)
+- [ ] Tutti documenti: contratti, fatture, dichiarazioni
+- [ ] Foto cantiere e impianto (before/after)
+- [ ] Contatti tecnici supporto (24/7)
+- [ ] Cliente può richiedere manutenzione "1 clic"
+- [ ] Cliente può aggiungere foto (es. anomalie rilevate)
+
+### 3.24 Documentazione e Contratti Centralizzati
+- [ ] Repository per ogni cantiere/cliente
+  - Preventivi (PDF)
+  - Contratti (con firma digitale verificabile)
+  - POS (Piano Operativo Sicurezza)
+  - Cronoprogramma
+  - Dichiarazioni (CE, ASL, APE, etc.)
+  - Foto cantiere (prima/durante/dopo)
+  - SAL (tutti gli stati)
+  - Fatture (XML SDI)
+  - Rapportini (con firma)
+- [ ] Ricerca veloce (per tipo, data, cliente)
+- [ ] Download bulk (ZIP con tutto)
+- [ ] Accesso controllato (solo autorizzati)
+- [ ] Versioning: storico modifiche documento
+- [ ] Firma digitale verificabile (timestamp, chi ha firmato)
+- [ ] Integrazione firma digitale: apri → sottoscrivi → saved con timestamp
+- [ ] Export per audit (lista completa, hash verificabili)
+
 ---
 
 ## 4. AUTOMAZIONI E TRIGGER

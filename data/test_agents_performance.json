@@ -1,0 +1,95 @@
+{
+  "agents": [
+    {
+      "id": "AGT_001",
+      "name": "Valentina",
+      "surname": "Ferrari",
+      "zone": "Nord-Ovest",
+      "commission_percent": 5.0,
+      "monthly_target": 40000,
+      "august_2026": {
+        "assigned_clients": 8,
+        "qualified_leads": 12,
+        "open_quotes": 3,
+        "converted_orders": 2,
+        "revenue_generated": 45000,
+        "target_achievement": "112.5%",
+        "commissions": 2250.00,
+        "performance_bonus": 500.00,
+        "total_earnings_august": 2750.00,
+        "ranking": 1,
+        "notes": "Top performer agosto. Ottima conversione lead → ordine."
+      },
+      "performance_history": {
+        "july_2026": {
+          "revenue": 38000,
+          "commissions": 1900.00
+        },
+        "june_2026": {
+          "revenue": 42000,
+          "commissions": 2100.00
+        }
+      },
+      "clients": ["CLI_001", "CLI_002", "CLI_003"],
+      "status": "attivo"
+    },
+    {
+      "id": "AGT_002",
+      "name": "Roberto",
+      "surname": "Gallo",
+      "zone": "Nord-Est",
+      "commission_percent": 6.0,
+      "monthly_target": 35000,
+      "august_2026": {
+        "assigned_clients": 6,
+        "qualified_leads": 8,
+        "open_quotes": 2,
+        "converted_orders": 1,
+        "revenue_generated": 35000,
+        "target_achievement": "100%",
+        "commissions": 2100.00,
+        "performance_bonus": 0,
+        "total_earnings_august": 2100.00,
+        "ranking": 2,
+        "notes": "Performance stabile. Ha raggiunto target."
+      },
+      "performance_history": {
+        "july_2026": {
+          "revenue": 36000,
+          "commissions": 2160.00
+        },
+        "june_2026": {
+          "revenue": 32000,
+          "commissions": 1920.00
+        }
+      },
+      "clients": ["CLI_004", "CLI_005"],
+      "status": "attivo"
+    }
+  ],
+  "commission_structure": {
+    "base_commission_percent": 5.0,
+    "commission_tiers": [
+      {
+        "min_revenue": 0,
+        "max_revenue": 30000,
+        "commission_percent": 5.0
+      },
+      {
+        "min_revenue": 30001,
+        "max_revenue": 50000,
+        "commission_percent": 5.5
+      },
+      {
+        "min_revenue": 50001,
+        "max_revenue": 100000,
+        "commission_percent": 6.0
+      }
+    ],
+    "performance_bonus": {
+      "threshold_percent": 110,
+      "bonus_amount": 500.00,
+      "notes": "Se superi target del 10%, bonus €500"
+    }
+  }
+}

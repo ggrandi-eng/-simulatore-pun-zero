@@ -1,0 +1,83 @@
+{
+  "tickets": [
+    {
+      "id": "TKT-2026-0001",
+      "date_created": "2026-08-13",
+      "time_created": "14:30",
+      "client_id": "CLI_001",
+      "client_name": "Acme SRL",
+      "worksite_id": "CANT_001",
+      "type": "guasto_impianto",
+      "urgency": "media",
+      "description": "Quadro principale fa rumore strano, possibile contattore sporco",
+      "assigned_to_technician_id": "OPE_002",
+      "assigned_to_technician_name": "Luca Bianchi",
+      "status": "aperto",
+      "workflow_history": [
+        {
+          "status": "aperto",
+          "date": "2026-08-13T14:30",
+          "notes": "Ticket creato da cliente"
+        }
+      ]
+    },
+    {
+      "id": "TKT-2026-0002",
+      "date_created": "2026-08-10",
+      "client_id": "CLI_002",
+      "client_name": "GreenEnergy SA",
+      "type": "manutenzione_urgente",
+      "urgency": "alta",
+      "description": "Pompa di calore non produce acqua calda, possibile problema circolatore",
+      "assigned_to_technician_id": "OPE_005",
+      "assigned_to_technician_name": "Stefano Colombo",
+      "status": "in_riparazione",
+      "intervention_date": "2026-08-12",
+      "intervention_notes": "Circolatore controllo spento, riavviato manualmente",
+      "photos_before": ["foto_pompa_before.jpg"],
+      "photos_after": ["foto_pompa_after.jpg"],
+      "workflow_history": [
+        {
+          "status": "aperto",
+          "date": "2026-08-10T09:00"
+        },
+        {
+          "status": "analisi",
+          "date": "2026-08-10T14:00"
+        },
+        {
+          "status": "in_riparazione",
+          "date": "2026-08-12T08:00"
+        }
+      ]
+    },
+    {
+      "id": "TKT-2026-0003",
+      "date_created": "2026-08-08",
+      "client_id": "CLI_003",
+      "client_name": "SmartHome Italia",
+      "type": "assistenza_tecnica",
+      "urgency": "bassa",
+      "description": "Domande su configurazione domotica KNX, accensione luci non funziona su app",
+      "assigned_to_technician_id": "OPE_001",
+      "assigned_to_technician_name": "Marco Rossi",
+      "status": "risolto",
+      "resolution_date": "2026-08-09",
+      "resolution_notes": "Problema APP: reset credenziali e ri-login. Domande tecniche risposte via email.",
+      "workflow_history": [
+        {
+          "status": "aperto",
+          "date": "2026-08-08T10:00"
+        },
+        {
+          "status": "analisi",
+          "date": "2026-08-08T15:00"
+        },
+        {
+          "status": "risolto",
+          "date": "2026-08-09T09:30"
+        }
+      ]
+    }
+  ]
+}

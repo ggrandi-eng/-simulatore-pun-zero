@@ -349,6 +349,120 @@
 **Risultato:** ___________  
 **Note:** ___________
 
+### 3.17 Costi Aziendali ✓
+- [ ] Creare voce costo (carburante, affitto, etc.)
+- [ ] Assegnare a cantiere
+- [ ] Categorizzare spesa
+- [ ] Allegare ricevuta
+- [ ] Visualizzare report costi per cantiere
+- [ ] Verificare impatto su margine cantiere
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
+### 3.18 Campagne Commerciali ✓
+- [ ] Creare campagna (nome, budget, periodo)
+- [ ] Selezionare lead/clienti target
+- [ ] Allegare materiale marketing
+- [ ] Invio email/WhatsApp personalizzati
+- [ ] Tracking aperture e clic
+- [ ] Monitoraggio risposte e lead generati
+- [ ] Calcolo ROI
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
+### 3.19 Appuntamenti e Agenda ✓
+- [ ] Creare appuntamento (sopralluogo, riunione)
+- [ ] Assegnare responsabile
+- [ ] Aggiungere indirizzo con GPS
+- [ ] Invio reminder automatico (24h + 1h)
+- [ ] Email di conferma con mappa
+- [ ] Notifica mobile a responsabile
+- [ ] Post-appuntamento: foto + esito
+- [ ] Sincronizzazione Outlook/Google Calendar
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
+### 3.20 Agenti in Rete — Commerciale Dettagliato ✓
+- [ ] Creare agente (nome, zona, commissione %)
+- [ ] Dashboard agente: clienti, lead, preventivi, ordini
+- [ ] Performance tracking (ricavi vs target)
+- [ ] Ranking tra agenti
+- [ ] Calcolo automatico provvigioni
+- [ ] Integrazione payroll (provvigioni in busta)
+- [ ] Bonus performance automatico
+- [ ] Storico provvigioni per anno
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
+### 3.21 Subappaltatori — Progetti Specializzati ✓
+- [ ] Creare ordine subappalto (specialità + cantiere)
+- [ ] Allegare schema tecnico e capitolato
+- [ ] Invio ordine a subappaltatore
+- [ ] Tracking: registro completamento (data, foto, firma)
+- [ ] Integrazione costi cantiere
+- [ ] Fatturazione automatica
+- [ ] Pagamento tracciato
+- [ ] Nel CRM cliente: cronologia subappalti
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
+### 3.22 Reclami e Ticket ✓
+- [ ] Cliente segnala problema
+- [ ] Ticket creato automaticamente (ID, urgenza)
+- [ ] Assegnazione automatica a tecnico
+- [ ] Workflow: Aperto → Analisi → Riparazione → Risolto
+- [ ] Tecnico registra intervento (data, foto, firma mobile)
+- [ ] Rapportino creato automaticamente da ticket
+- [ ] Email cliente: "Ticket risolto"
+- [ ] Report: quanti ticket aperti/risolti
+- [ ] SLA tracking: tempo risoluzione medio
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
+### 3.23 Gemello Digitale Impianto ✓
+- [ ] Portale cliente: visualizzare impianti installati
+- [ ] Per ogni impianto: modello, numero serie, foto, garanzia
+- [ ] Manuali tecnici e video
+- [ ] Storico manutenzioni (date, interventi, tecnico)
+- [ ] Manutenzione programmata (reminder)
+- [ ] Contratti attivi
+- [ ] Foto cantiere (before/after)
+- [ ] Contatti supporto 24/7
+- [ ] Cliente richiede manutenzione "1 clic"
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
+### 3.24 Documentazione e Contratti Centralizzati ✓
+- [ ] Repository per cantiere: preventivi, contratti, POS
+- [ ] Cronoprogramma, dichiarazioni (CE, ASL, APE)
+- [ ] Foto cantiere (prima/durante/dopo)
+- [ ] SAL (tutti gli stati)
+- [ ] Fatture (XML SDI)
+- [ ] Rapportini (con firma)
+- [ ] Ricerca veloce per tipo/data/cliente
+- [ ] Download bulk (ZIP con tutto)
+- [ ] Versioning: storico modifiche
+- [ ] Firma digitale verificabile (timestamp, chi ha firmato)
+- [ ] Export per audit
+
+**Status:** ⏳ Non iniziato  
+**Risultato:** ___________  
+**Note:** ___________
+
 ---
 
 ## FASE 4: Automazioni e Trigger (Tempo Stimato: 1-2h)

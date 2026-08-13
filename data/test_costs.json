@@ -1,0 +1,64 @@
+{
+  "costs": [
+    {
+      "id": "COST_001",
+      "date": "2026-08-10",
+      "category": "trasferta",
+      "description": "Carburante furgone cantiere GreenEnergy (Torino)",
+      "amount": 85.50,
+      "worksite_id": "CANT_002",
+      "assigned_to_worksite": true,
+      "payment_method": "contanti",
+      "receipt_attached": "ricevuta_benzina_001.jpg",
+      "status": "registrato"
+    },
+    {
+      "id": "COST_002",
+      "date": "2026-08-01",
+      "category": "fisso",
+      "description": "Affitto ufficio agosto 2026",
+      "amount": 1500.00,
+      "worksite_id": null,
+      "assigned_to_worksite": false,
+      "payment_method": "bonifico",
+      "invoice_attached": "affitto_ufficio_agosto.pdf",
+      "status": "registrato"
+    },
+    {
+      "id": "COST_003",
+      "date": "2026-08-05",
+      "category": "operativo",
+      "description": "Assicurazione responsabilità civile",
+      "amount": 450.00,
+      "worksite_id": null,
+      "assigned_to_worksite": false,
+      "payment_method": "bonifico",
+      "invoice_attached": "assicurazione_agosto.pdf",
+      "status": "registrato"
+    },
+    {
+      "id": "COST_004",
+      "date": "2026-08-13",
+      "category": "operativo",
+      "description": "Telefonia aziendale agosto",
+      "amount": 120.00,
+      "worksite_id": null,
+      "assigned_to_worksite": false,
+      "payment_method": "addebito",
+      "invoice_attached": "fattura_telefonica_agosto.pdf",
+      "status": "registrato"
+    },
+    {
+      "id": "COST_005",
+      "date": "2026-08-11",
+      "category": "trasferta",
+      "description": "Pasto operai cantiere Acme",
+      "amount": 35.00,
+      "worksite_id": "CANT_001",
+      "assigned_to_worksite": true,
+      "payment_method": "contanti",
+      "receipt_attached": "ricevuta_ristorante.jpg",
+      "status": "registrato"
+    }
+  ]
+}

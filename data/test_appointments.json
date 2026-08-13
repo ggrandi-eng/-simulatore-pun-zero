@@ -1,0 +1,60 @@
+{
+  "appointments": [
+    {
+      "id": "APP_001",
+      "type": "sopralluogo",
+      "client_id": "CLI_001",
+      "date": "2026-08-15",
+      "time": "14:00",
+      "duration_hours": 2,
+      "location": "Via Milano 45, Milano",
+      "gps_lat": 45.4654,
+      "gps_lng": 9.1859,
+      "assigned_to_agent_id": "AGT_001",
+      "assigned_to_agent_name": "Valentina Ferrari",
+      "notes": "Verificare stato impianto, misurare spazi per nuovo quadro principale",
+      "attachments": ["mappa_indirizzo.pdf", "foto_impianto_attuale.jpg"],
+      "reminder_sent": true,
+      "reminder_24h_sent": true,
+      "reminder_1h_sent": false,
+      "status": "scheduled",
+      "created_date": "2026-08-10"
+    },
+    {
+      "id": "APP_002",
+      "type": "riunione_cliente",
+      "client_id": "CLI_002",
+      "date": "2026-08-20",
+      "time": "10:00",
+      "duration_hours": 1.5,
+      "location": "Corso Vittorio 123, Torino",
+      "gps_lat": 45.0703,
+      "gps_lng": 7.6869,
+      "assigned_to_agent_id": "AGT_002",
+      "assigned_to_agent_name": "Roberto Gallo",
+      "notes": "Presentazione offerta finale pompe di calore + accumulo",
+      "attachments": ["presentazione_pompe.pdf", "fogli_calcolo_risparmio.xlsx"],
+      "reminder_sent": true,
+      "reminder_24h_sent": true,
+      "reminder_1h_sent": false,
+      "status": "scheduled",
+      "created_date": "2026-08-12"
+    },
+    {
+      "id": "APP_003",
+      "type": "follow_up_telefonico",
+      "client_id": "CLI_003",
+      "date": "2026-08-17",
+      "time": "16:00",
+      "duration_hours": 0.5,
+      "location": "Telefono",
+      "assigned_to_agent_id": "AGT_001",
+      "assigned_to_agent_name": "Valentina Ferrari",
+      "notes": "Verificare interesse domotica KNX, rispondere a domande tecniche",
+      "attachments": ["faq_knx.pdf"],
+      "reminder_sent": false,
+      "status": "scheduled",
+      "created_date": "2026-08-13"
+    }
+  ]
+}
