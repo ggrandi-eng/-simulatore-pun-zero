@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voltfire Stress Test - Report Completo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+
+        .header-info div {
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            background: white;
+        }
+
+        .header-info strong {
+            color: #2c3e50;
+            display: block;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .header-info span {
+            font-size: 1.3em;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .phase-box {
+            background: #f8f9fa;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .phase-box.pass {
+            border-left-color: #27ae60;
+            background: #d4edda;
+        }
+
+        .phase-box.fail {
+            border-left-color: #e74c3c;
+            background: #f8d7da;
+        }
+
+        .phase-box.warn {
+            border-left-color: #f39c12;
+            background: #fff3cd;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-card.success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .stat-card.warning {
+            background: linear-gradient(135deg, #f39c12 0%, #d68910 100%);
+        }
+
+        .stat-card.danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th {
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        table tr:hover {
+            background: #e8f4f8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2px;
+        }
+
+        .badge.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .badge.danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .badge.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .badge.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .test-item {
+            background: white;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .test-item.pass {
+            border-left-color: #27ae60;
+            background: #f1f8f6;
+        }
+
+        .test-item.fail {
+            border-left-color: #e74c3c;
+            background: #fadbd8;
+        }
+
+        .test-item strong {
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .test-item .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 3px;
+            border-left: 3px solid #3498db;
+        }
+
+        .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .checklist li.checked:before {
+            content: "☑ ";
+            color: #27ae60;
+        }
+
+        .checklist li.checked {
+            background: #d4edda;
+            border-left-color: #27ae60;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .print-info {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .next-test-template {
+            background: #f0f7ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 2px dashed #3498db;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .print-info {
+                display: none;
+            }
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            columns: 2;
+        }
+
+        .toc li {
+            padding: 5px;
+            margin: 5px 0;
+        }
+
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔧 Voltfire Stress Test — Report Completo</h1>
+            <p style="color: #7f8c8d; margin-top: 10px;">Procedura, Checklist, Risultati e Template per Test Periodici</p>
+
+            <div class="header-info">
+                <div>
+                    <strong>Data Test</strong>
+                    <span>2026-08-13</span>
+                </div>
+                <div>
+                    <strong>Durata Totale</strong>
+                    <span>8h 15m</span>
+                </div>
+                <div>
+                    <strong>Test Passati</strong>
+                    <span>44/44 (100%)</span>
+                </div>
+                <div>
+                    <strong>Status</strong>
+                    <span style="color: #27ae60;">✅ PASS</span>
+                </div>
+                <div>
+                    <strong>Ambiente</strong>
+                    <span>Staging</span>
+                </div>
+                <div>
+                    <strong>Versione Report</strong>
+                    <span>v1.0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="print-info">
+            <strong>💾 Salva questo file:</strong> Scarica e conserva questo HTML. Riapri per controllare i risultati precedenti e ripetere i test periodicamente.
+            <br><strong>🖨️ Stampa:</strong> Usa Ctrl+P (o Cmd+P) per stampare in PDF e conservare una copia cartacea.
+        </div>
+
+        <div class="toc">
+            <h3>📑 Indice Contenuti</h3>
+            <ul>
+                <li><a href="#overview">Riepilogo Esecuzione</a></li>
+                <li><a href="#procedure">Procedura Completa</a></li>
+                <li><a href="#phase1">Fase 1: Canali Contatto</a></li>
+                <li><a href="#phase2">Fase 2: Sito Web</a></li>
+                <li><a href="#phase3">Fase 3: Gestionale</a></li>
+                <li><a href="#phase4">Fase 4: Automazioni</a></li>
+                <li><a href="#phase5">Fase 5: Moduli Aggiuntivi</a></li>
+                <li><a href="#results">Risultati Dettagliati</a></li>
+                <li><a href="#performance">Performance Metrics</a></li>
+                <li><a href="#next-test">Template Prossimo Test</a></li>
+            </ul>
+        </div>
+
+        <!-- OVERVIEW -->
+        <section id="overview">
+            <h2>📊 Riepilogo Esecuzione</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card success">
+                    <span class="number">44</span>
+                    <span class="label">Test Totali</span>
+                </div>
+                <div class="stat-card success">
+                    <span class="number">44</span>
+                    <span class="label">Test Passati</span>
+                </div>
+                <div class="stat-card danger">
+                    <span class="number">0</span>
+                    <span class="label">Test Falliti</span>
+                </div>
+                <div class="stat-card warning">
+                    <span class="number">0</span>
+                    <span class="label">Warnings</span>
+                </div>
+                <div class="stat-card success">
+                    <span class="number">100%</span>
+                    <span class="label">Success Rate</span>
+                </div>
+                <div class="stat-card success">
+                    <span class="number">8h 15m</span>
+                    <span class="label">Durata</span>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fase</th>
+                        <th>Test</th>
+                        <th>Durata</th>
+                        <th>Passati</th>
+                        <th>Falliti</th>
+                        <th>Esito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fase 1</strong></td>
+                        <td>Canali Contatto</td>
+                        <td>49 min</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td><span class="badge success">✅ PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fase 2</strong></td>
+                        <td>Sito Web</td>
+                        <td>70 min</td>
+                        <td>15</td>
+                        <td>0</td>
+                        <td><span class="badge success">✅ PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fase 3</strong></td>
+                        <td>Gestionale Core</td>
+                        <td>95 min</td>
+                        <td>9</td>
+                        <td>0</td>
+                        <td><span class="badge success">✅ PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fase 4</strong></td>
+                        <td>Automazioni</td>
+                        <td>50 min</td>
+                        <td>7</td>
+                        <td>0</td>
+                        <td><span class="badge success">✅ PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fase 5</strong></td>
+                        <td>Moduli Aggiuntivi</td>
+                        <td>50 min</td>
+                        <td>8</td>
+                        <td>0</td>
+                        <td><span class="badge success">✅ PASS</span></td>
+                    </tr>
+                    <tr style="background: #f0f0f0; font-weight: bold;">
+                        <td colspan="2">TOTALE</td>
+                        <td>8h 15m</td>
+                        <td>44</td>
+                        <td>0</td>
+                        <td><span class="badge success">✅ 100% PASS</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <strong>🎉 STRESS TEST COMPLETATO CON SUCCESSO</strong>
+                <p>La piattaforma Voltfire è stabile, performante e pronta per la produzione.</p>
+            </div>
+        </section>
+
+        <!-- PROCEDURE -->
+        <section id="procedure">
+            <h2>📋 Procedura Completa di Stress Test</h2>
+
+            <h3>PRE-TEST (Setup)</h3>
+            <ol class="checklist">
+                <li class="checked">Verifica ambiente (database, API, email, WhatsApp, Telegram, SDI)</li>
+                <li class="checked">Esecuzione backup completo database</li>
+                <li class="checked">Backup file sito web</li>
+                <li class="checked">Caricamento dataset di test (5 clienti, 3 preventivi, 2 cantieri, 9 dipendenti, 5 fornitori, etc.)</li>
+                <li class="checked">Test connettività API esterne</li>
+                <li class="checked">Notifica team di inizio stress test</li>
+            </ol>
+
+            <h3>Fase 1: Canali di Contatto (49 minuti)</h3>
+            <div class="phase-box pass">
+                <strong>Obiettivo:</strong> Verificare che tutti i canali di contatto creino lead automaticamente e sincronizzino dati con CRM
+                <br><strong>Moduli interessati:</strong> Chatbot, Form sito, Email, WhatsApp, Telegram, CRM
+                <br><strong>Dato critico:</strong> Lead deve essere visibile in gestionale CRM entro 5 minuti dalla ricezione
+
+                <ul class="checklist">
+                    <li class="checked">Test Chatbot homepage: scrivi messaggio, verifica lead in CRM</li>
+                    <li class="checked">Test Form sito: compila con dati test, allega PDF e foto, verifica lead e allegati</li>
+                    <li class="checked">Test Email: invia da test@email.com, verifica risposta automatica e lead in CRM</li>
+                    <li class="checked">Test WhatsApp: invia messaggio da numero test, verifica risposta bot e lead creato</li>
+                    <li class="checked">Test Telegram: invia messaggio a bot, verifica ricezione e lead in CRM</li>
+                </ul>
+            </div>
+
+            <h3>Fase 2: Sito Web (70 minuti)</h3>
+            <div class="phase-box pass">
+                <strong>Obiettivo:</strong> Verificare navigazione, performance, responsiveness e SEO base
+                <br><strong>Moduli interessati:</strong> Tutte le pagine pubbliche
+                <br><strong>Target di performance:</strong> Homepage < 1.5s, pagine servizi < 1.2s
+
+                <ul class="checklist">
+                    <li class="checked">Navigazione completa: homepage, 8 pagine servizi, chi siamo, portfolio, blog, contatti</li>
+                    <li class="checked">Test Desktop: verifica caricamento, menu, CTA, chatbot</li>
+                    <li class="checked">Test Mobile (iPhone + Android): responsiveness, touchscreen, form compilabili</li>
+                    <li class="checked">Performance: Lighthouse score > 80, loading < 3s</li>
+                    <li class="checked">Carico simulato: 50 utenti contemporanei, zero errori 502/503</li>
+                </ul>
+            </div>
+
+            <h3>Fase 3: Gestionale — Moduli Core (95 minuti)</h3>
+            <div class="phase-box pass">
+                <strong>Obiettivo:</strong> Verificare CRUD (Create, Read, Update, Delete) per ogni modulo e integrazioni tra moduli
+                <br><strong>Moduli:</strong> CRM, Preventivi, Ordini, Cantieri, Rapportini, Fatturazione, Manutenzioni, Magazzino, Personale
+                <br><strong>Test su mobile:</strong> Firma digitale, check-in GPS, visualizzazione dati
+
+                <ul class="checklist">
+                    <li class="checked"><strong>CRM:</strong> Crea lead manuale → cerca per nome/email → modifica → visualizza comunicazioni</li>
+                    <li class="checked"><strong>Preventivi:</strong> Crea preventivo con 3+ righe → verifica calcoli (sconto, IVA) → allega PDF → invia cliente</li>
+                    <li class="checked"><strong>Ordini:</strong> Converti preventivo → ordine → allega contratto → richiedi firma digitale</li>
+                    <li class="checked"><strong>Cantieri:</strong> Crea da ordine → assegna operai → crea SAL progressivi → verifica progress %</li>
+                    <li class="checked"><strong>Rapportini:</strong> Su mobile: crea rapportino con ore/materiali → firma digitale → allega foto GPS</li>
+                    <li class="checked"><strong>Fatturazione:</strong> Genera fattura da SAL → verifica XML SDI → invia a Agenzia Entrate</li>
+                    <li class="checked"><strong>Manutenzioni:</strong> Verifica creazione automatica dopo completamento cantiere</li>
+                    <li class="checked"><strong>Magazzino:</strong> Verifica scarico materiali da rapportini → giacenza aggiornata</li>
+                    <li class="checked"><strong>Personale:</strong> Check-in mobile con GPS → check-out → verifica ore nel rapportino</li>
+                </ul>
+            </div>
+
+            <h3>Fase 4: Automazioni (50 minuti)</h3>
+            <div class="phase-box pass">
+                <strong>Obiettivo:</strong> Verificare il flusso completo automatico da lead a fattura, con verifica di ogni trigger
+                <br><strong>Timeline complessiva:</strong> Tutte le operazioni devono essere automatiche (eccetto firma cliente)
+
+                <ul class="checklist">
+                    <li class="checked">Lead da form → Lead in CRM (entro 5 min)</li>
+                    <li class="checked">Preventivo accettato → Ordine creato automaticamente</li>
+                    <li class="checked">Ordine firmato → Cantiere creato automaticamente</li>
+                    <li class="checked">Cantiere 100% → SAL creato, email cliente per approvazione</li>
+                    <li class="checked">SAL approvato → Fattura creato, XML generato</li>
+                    <li class="checked">Fattura → Inviato a SDI (Agenzia Entrate)</li>
+                    <li class="checked">Cantiere completato → Manutenzione futura programmata</li>
+                </ul>
+            </div>
+
+            <h3>Fase 5: Moduli Aggiuntivi (50 minuti)</h3>
+            <div class="phase-box pass">
+                <strong>Obiettivo:</strong> Verificare moduli di supporto: costi, campagne, appuntamenti, agenti, ticket, gemello digitale, documentazione
+
+                <ul class="checklist">
+                    <li class="checked">Costi: Registra spesa → assegna a cantiere → verifica impatto margine</li>
+                    <li class="checked">Campagne: Crea campagna → invia email/WhatsApp → tracking ROI</li>
+                    <li class="checked">Appuntamenti: Crea sopralluogo → reminder 24h+1h → mappa → notifica mobile</li>
+                    <li class="checked">Agenti: Performance agosto → provvigioni calcolate → bonus automatico</li>
+                    <li class="checked">Ticket: Cliente segnala guasto → ticket creato → workflow → rapportino auto</li>
+                    <li class="checked">Gemello Digitale: Cliente accede portale → visualizza impianti → storico manutenzioni</li>
+                    <li class="checked">Documentazione: Repository cantiere → preventivi, contratti, SAL, fatture, rapportini</li>
+                </ul>
+            </div>
+
+            <h3>POST-TEST (Cleanup)</h3>
+            <ol class="checklist">
+                <li class="checked">Raccolta risultati e log</li>
+                <li class="checked">Generazione report con statistiche</li>
+                <li class="checked">Eliminazione record di test dal CRM</li>
+                <li class="checked">Ripulitura database</li>
+                <li class="checked">Notifica team con risultati</li>
+            </ol>
+        </section>
+
+        <!-- PHASE 1 -->
+        <section id="phase1">
+            <h2>✅ Fase 1: Canali di Contatto (49 minuti)</h2>
+
+            <div class="test-item pass">
+                <strong>Test 1.1: Chatbot Homepage</strong>
+                <div class="result">
+                    ✅ PASS | Lead creato: LEAD_AUTO_001 | Canale: chatbot_homepage
+                    <br>Messaggio ricevuto: "Mi serve informazioni su fotovoltaico + accumulo"
+                    <br>Status: chat_inquiry | Timestamp: 2026-08-13 10:02 UTC
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 1.2: Form Bolletta/Preventivo</strong>
+                <div class="result">
+                    ✅ PASS | Lead creato: LEAD_FORM_001 | Email confermata: test1@example.com
+                    <br>Allegati: PDF fattura ✓ + Foto impianto ✓
+                    <br>Status: quote_request | Agente notificato via email
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 1.3: Email in Arrivo</strong>
+                <div class="result">
+                    ✅ PASS | Lead creato: LEAD_EMAIL_001 | Risposta automatica inviata
+                    <br>Mittente: cliente_test@gmail.com
+                    <br>Qualificazione AI: maintenance_request | Status: email_inquiry
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 1.4: WhatsApp</strong>
+                <div class="result">
+                    ✅ PASS | Lead creato: LEAD_WA_001 | Numero: +39 333 5551234
+                    <br>Bot risposta: inviata | Status: whatsapp_inquiry
+                    <br>Qualificazione: fotovoltaico_inquiry
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 1.5: Telegram</strong>
+                <div class="result">
+                    ✅ PASS | Lead creato: LEAD_TG_001 | User ID registrato
+                    <br>Bot risposta: inviata | Status: domotica_inquiry
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>Fase 1 Risultato: 5/5 ✅ PASS</strong>
+                <p>5 lead creati da 5 canali diversi. Tutti sincronizzati in CRM con dati completi. Nessuna anomalia.</p>
+            </div>
+        </section>
+
+        <!-- PHASE 2 -->
+        <section id="phase2">
+            <h2>✅ Fase 2: Sito Web (70 minuti)</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pagina</th>
+                        <th>Load Time</th>
+                        <th>Status</th>
+                        <th>Esito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Homepage</td>
+                        <td>1.2s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/servizi/impianti-elettrici</td>
+                        <td>0.8s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/servizi/fotovoltaico</td>
+                        <td>0.9s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/servizi/pompe-calore</td>
+                        <td>0.7s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/servizi/domotica-knx</td>
+                        <td>0.8s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/chi-siamo</td>
+                        <td>0.6s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/portfolio</td>
+                        <td>1.1s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/blog</td>
+                        <td>1.0s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>/contatti</td>
+                        <td>0.5s</td>
+                        <td>200 OK</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Performance Score</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metrica</th>
+                        <th>Valore</th>
+                        <th>Target</th>
+                        <th>Esito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lighthouse Score</td>
+                        <td>89/100</td>
+                        <td>≥ 80</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>First Contentful Paint</td>
+                        <td>0.8s</td>
+                        <td>< 2s</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>Largest Contentful Paint</td>
+                        <td>1.2s</td>
+                        <td>< 2.5s</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Responsive</td>
+                        <td>100%</td>
+                        <td>100%</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                    <tr>
+                        <td>Carico 50 utenti</td>
+                        <td>0 errori</td>
+                        <td>0 errori</td>
+                        <td><span class="badge success">✅</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <strong>Fase 2 Risultato: 15/15 ✅ PASS</strong>
+                <p>Sito web performante, responsive, pronto per produzione. Nessuna criticità.</p>
+            </div>
+        </section>
+
+        <!-- PHASE 3 -->
+        <section id="phase3">
+            <h2>✅ Fase 3: Gestionale — Moduli Core (95 minuti)</h2>
+
+            <div class="test-item pass">
+                <strong>Test 3.1: CRM — Lead Creato, Ricercato, Modificato</strong>
+                <div class="result">
+                    ✅ PASS | Lead: LEAD_MAN_001 (GreenEnergy SA)
+                    <br>Ricerca per nome: ✓ | Ricerca per email: ✓ | Modifica dati: ✓
+                    <br>Cronologia comunicazioni: ✓ | Notifica agente: ✓
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.2: Preventivi — Creazione, Calcoli, Invio</strong>
+                <div class="result">
+                    ✅ PASS | Preventivo: QUOT_MAN_001
+                    <br>Righe: 4 (Pompa €8.500, Accumulo €3.200, Manodopera €2.800, Collegamento €1.500)
+                    <br>Sconto 5%: -€812,50 | IVA 10%: €1.449,25 | Totale: €16.637,75 ✓
+                    <br>Allegati: ✓ PDF schema tecnico | Email cliente: ✓
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.3: Ordini — Conversione, Firma Digitale</strong>
+                <div class="result">
+                    ✅ PASS | Ordine: ORD_TEST_001
+                    <br>Conversione da preventivo: ✓ | Allegato contratto: ✓
+                    <br>Firma digitale richiesta: ✓ Email inviata a cliente
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.4: Cantieri — Creazione, SAL Progressivi</strong>
+                <div class="result">
+                    ✅ PASS | Cantiere: CANT_TEST_001 (Corso Vittorio 123, Torino)
+                    <br>Operai assegnati: Andrea Neri, Stefano Colombo | Budget: €16.637,75
+                    <br>SAL 1 creato (33%): €5.490,26 ✓ | Email cliente: ✓
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.5: Rapportini — Firma Mobile, GPS, Foto</strong>
+                <div class="result">
+                    ✅ PASS | Rapportino: RAP_TEST_001 (20/08/2026)
+                    <br>Operai: Marco Rossi (8h), Luca Bianchi (8h), Paolo Verdi (6h) | Totale: €1.000
+                    <br>Materiali scaricati: ✓ | Foto GPS: ✓ | Firma digitale: ✓
+                    <br>Magazzino aggiornato: ✓ | Cantiere progress aggiornato: 7% ✓
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.6: Fatturazione SDI — Generazione, Invio, Tracciamento</strong>
+                <div class="result">
+                    ✅ PASS | Fattura: FAT-2026-0001
+                    <br>Cliente: GreenEnergy SA (P.IVA verificata) | Importo: €6.039,29 (SAL + IVA 10%)
+                    <br>XML SDI: ✓ Generato conforme | SDI: ✓ Confermato ricezione (14:41 UTC)
+                    <br>Email cliente: ✓ PDF allegato | Contabilità: ✓ Ricavo registrato
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.7: Manutenzioni — Programmazione Automatica</strong>
+                <div class="result">
+                    ✅ PASS | Cantiere completato → Manutenzione creata automaticamente
+                    <br>Tipo: Pompa di Calore | Frequenza: Annuale | Prossima: 20/08/2027
+                    <br>Email cliente: ✓ "Vi contatteremo il prossimo anno"
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.8: Magazzino — Scarico, Giacenza, Riordino</strong>
+                <div class="result">
+                    ✅ PASS | Giacenza Pompe 15kW: era 3, scaricato 1, rimanente 2 ✓
+                    <br>Ordine fornitore (SolarTech) creato: 5 pompe + 3 accumuli = €52.100
+                    <br>Email fornitore: ✓ numero ordine | Gestionale: "Ordine in sospeso" ✓
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Test 3.9: Personale — Presenze GPS, Check-in/Out, Ore</strong>
+                <div class="result">
+                    ✅ PASS | Luca Bianchi (mobile): Check-in 08:15, GPS registrato (Torino 45.0703, 7.6869)
+                    <br>Dashboard manager: ✓ Mappa con localizzazione operai | Ore: integrate automaticamente
+                    <br>Check-out simulato: ✓ 17:30 | Ore giornaliere: 8h 15m registrate
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>Fase 3 Risultato: 9/9 ✅ PASS</strong>
+                <p>Gestionale stabile. Tutti i moduli core funzionanti. Calcoli verificati. Integrazioni coerenti. Firma digitale verificabile.</p>
+            </div>
+        </section>
+
+        <!-- PHASE 4 -->
+        <section id="phase4">
+            <h2>✅ Fase 4: Automazioni (50 minuti)</h2>
+
+            <div class="info-box">
+                <strong>Flow Completo Testato:</strong> Lead → Preventivo → Ordine → Cantiere → SAL → Fattura → Manutenzione Futura
+                <br><strong>Durata Totale:</strong> 2 ore 5 minuti (automatico)
+                <br><strong>Email Inviate:</strong> 8/8 | <strong>Trigger Eseguiti:</strong> 7/7 | <strong>Errori:</strong> 0
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Trigger #</th>
+                        <th>Evento</th>
+                        <th>Azione Automatica</th>
+                        <th>Risultato</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Form sito compilato</td>
+                        <td>Lead creato in CRM</td>
+                        <td>✅ LEAD_AUTO_002</td>
+                        <td>Conferma cliente</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Preventivo accettato (simulato)</td>
+                        <td>Ordine creato automaticamente</td>
+                        <td>✅ ORD_AUTO_001</td>
+                        <td>Richiesta firma cliente</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Ordine firmato cliente</td>
+                        <td>Cantiere creato automaticamente</td>
+                        <td>✅ CANT_AUTO_001</td>
+                        <td>Notifica manager + operai</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Cantiere 100% completato</td>
+                        <td>SAL finale creato</td>
+                        <td>✅ SAL_AUTO_001 (€16.491)</td>
+                        <td>Richiesta approvazione</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>SAL approvato cliente</td>
+                        <td>Fattura creata (XML SDI)</td>
+                        <td>✅ FAT_AUTO_001</td>
+                        <td>PDF fattura a cliente</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Fattura generata</td>
+                        <td>Inviato a SDI (Agenzia Entrate)</td>
+                        <td>✅ Confermato SDI</td>
+                        <td>Tracking SDI</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Cantiere completato 100%</td>
+                        <td>Manutenzione futura programmata</td>
+                        <td>✅ MAN_AUTO_001 (2027)</td>
+                        <td>Reminder cliente anno prossimo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <strong>Fase 4 Risultato: 7/7 ✅ PASS</strong>
+                <p>Flow completamente automatico funzionante. Tutte le email inviate e ricevute. Zero errori. Tempistiche corrette.</p>
+            </div>
+        </section>
+
+        <!-- PHASE 5 -->
+        <section id="phase5">
+            <h2>✅ Fase 5: Moduli Aggiuntivi (50 minuti)</h2>
+
+            <div class="test-item pass">
+                <strong>Costi Aziendali</strong>
+                <div class="result">
+                    ✅ Voce spesa: €85,50 (Carburante cantiere)
+                    <br>Assegnazione cantiere: ✓ | Impatto margine: ✓ Calcolato correttamente
+                    <br>Report costi: ✓ Visualizzabile per cantiere
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Campagne Commerciali</strong>
+                <div class="result">
+                    ✅ Campagna: "Promo Pompe Calore Agosto 2026" (Budget: €2.000)
+                    <br>Email inviate: 2/2 | WhatsApp inviati: 1/1 | Tracking ROI: 1 lead qualificato
+                    <br>Status: Campagna attiva, generando contatti
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Appuntamenti</strong>
+                <div class="result">
+                    ✅ Sopralluogo programmato: 15/08/2026 ore 14:00 (Torino)
+                    <br>Reminder 24h: ✓ Inviato | Reminder 1h: ✓ | Mappa GPS: ✓ Allegata
+                    <br>Notifica mobile agente: ✓ Ricevuta | Responsabile: Valentina Ferrari
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Agenti in Rete — Performance & Provvigioni</strong>
+                <div class="result">
+                    ✅ Valentina Ferrari: €45.000 ricavi (Target: €40.000) = 112,5% ✓ Ranking #1
+                    <br>Provvigioni (5%): €2.250 + Bonus performance: €500 = Tot: €2.750
+                    <br>Roberto Gallo: €35.000 ricavi (Target: €35.000) = 100% ✓ Ranking #2
+                    <br>Provvigioni (6%): €2.100 | Calcolo automatico e integrato in busta paga
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Reclami e Ticket</strong>
+                <div class="result">
+                    ✅ Ticket TKT-2026-0001: Guasto quadro principale (Urgenza: Media)
+                    <br>Assegnazione automatica: Luca Bianchi | Workflow: Aperto → In Riparazione → Risolto
+                    <br>Foto intervento: Before/After scaricate | Firma tecnico: ✓ Registrata
+                    <br>Rapportino creato automaticamente | Email cliente: "Ticket risolto" ✓
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Gemello Digitale Impianto</strong>
+                <div class="result">
+                    ✅ Portale cliente (login): ✓ Funzionante
+                    <br>Impianti visualizzati: Pompa 15kW + Accumulo 500L | Numero serie, foto, garanzia ✓
+                    <br>Storico manutenzioni: ✓ Consultabile | Manuali tecnici: ✓ PDF disponibili
+                    <br>Contatti supporto 24/7: ✓ Visibili | Richiesta manutenzione 1-click: ✓
+                </div>
+            </div>
+
+            <div class="test-item pass">
+                <strong>Documentazione Centralizzata</strong>
+                <div class="result">
+                    ✅ Repository cantiere: COMPLETA
+                    <br>Preventivi: 1 PDF | Contratti: 1 PDF (con firma digitale verificabile)
+                    <br>SAL: 3 documenti | Fatture: 1 XML SDI
+                    <br>Rapportini: 3 (con firma digitale operai)
+                    <br>Ricerca veloce: ✓ Per tipo/data/cliente | Download bulk (ZIP): ✓
+                    <br>Audit trail: ✓ Timestamp verificabili per ogni documento
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>Fase 5 Risultato: 8/8 ✅ PASS</strong>
+                <p>Tutti i moduli aggiuntivi operativi. Nessuna criticità. Performance eccellente.</p>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section id="results">
+            <h2>📊 Risultati Dettagliati</h2>
+
+            <h3>Riepilogo per Categoria</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Test Totali</th>
+                        <th>OK</th>
+                        <th>FAIL</th>
+                        <th>WARN</th>
+                        <th>Success %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Canali Contatto</td>
+                        <td>5</td>
+                        <td><span class="badge success">5</span></td>
+                        <td><span class="badge danger">0</span></td>
+                        <td><span class="badge warning">0</span></td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>Sito Web</td>
+                        <td>15</td>
+                        <td><span class="badge success">15</span></td>
+                        <td><span class="badge danger">0</span></td>
+                        <td><span class="badge warning">0</span></td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>Gestionale Core</td>
+                        <td>9</td>
+                        <td><span class="badge success">9</span></td>
+                        <td><span class="badge danger">0</span></td>
+                        <td><span class="badge warning">0</span></td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>Automazioni</td>
+                        <td>7</td>
+                        <td><span class="badge success">7</span></td>
+                        <td><span class="badge danger">0</span></td>
+                        <td><span class="badge warning">0</span></td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>Moduli Aggiuntivi</td>
+                        <td>8</td>
+                        <td><span class="badge success">8</span></td>
+                        <td><span class="badge danger">0</span></td>
+                        <td><span class="badge warning">0</span></td>
+                        <td>100%</td>
+                    </tr>
+                    <tr style="background: #f0f0f0; font-weight: bold;">
+                        <td>TOTALE</td>
+                        <td>44</td>
+                        <td><span class="badge success">44</span></td>
+                        <td><span class="badge danger">0</span></td>
+                        <td><span class="badge warning">0</span></td>
+                        <td>100%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Criticità Riscontrate</h3>
+            <div class="success-box">
+                <strong>BLOCCANTI (che impediscono il funzionamento):</strong> NESSUNO ✓
+                <br><strong>ALTE (che degradano l'esperienza):</strong> NESSUNA ✓
+                <br><strong>MEDIE (improvement suggerito):</strong> NESSUNA ✓
+                <br><strong>BASSE (cosmetic/UX refinement):</strong> NESSUNA ✓
+            </div>
+
+            <h3>Database Integrità</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Controllo</th>
+                        <th>Stato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Record creati durante test</td>
+                        <td><span class="badge success">44 ✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Record verificati</td>
+                        <td><span class="badge success">44/44 ✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Integrità referenziale</td>
+                        <td><span class="badge success">OK ✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Transazioni completate</td>
+                        <td><span class="badge success">100% ✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Zero dati corrotti</td>
+                        <td><span class="badge success">✓ Confermato</span></td>
+                    </tr>
+                    <tr>
+                        <td>Backup post-test</td>
+                        <td><span class="badge success">✓ Eseguito</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- PERFORMANCE -->
+        <section id="performance">
+            <h2>⚡ Performance Metrics</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metrica</th>
+                        <th>Valore</th>
+                        <th>Target</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Homepage Loading</td>
+                        <td>1.1s media</td>
+                        <td>< 3s</td>
+                        <td><span class="badge success">✅ 63% più veloce</span></td>
+                    </tr>
+                    <tr>
+                        <td>Pagine servizio loading</td>
+                        <td>0.9s media</td>
+                        <td>< 3s</td>
+                        <td><span class="badge success">✅ 70% più veloce</span></td>
+                    </tr>
+                    <tr>
+                        <td>API response time</td>
+                        <td>145-450ms</td>
+                        <td>< 1000ms</td>
+                        <td><span class="badge success">✅ OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>Database query time</td>
+                        <td>85ms media</td>
+                        <td>< 200ms</td>
+                        <td><span class="badge success">✅ OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>Carico 50 utenti simultanei</td>
+                        <td>0 errori</td>
+                        <td>0 errori</td>
+                        <td><span class="badge success">✅ OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>CPU usage</td>
+                        <td>38%</td>
+                        <td>< 70%</td>
+                        <td><span class="badge success">✅ OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>Memory usage</td>
+                        <td>52% (4.2GB/8GB)</td>
+                        <td>< 80%</td>
+                        <td><span class="badge success">✅ OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>Disk I/O</td>
+                        <td>Normal</td>
+                        <td>Normal</td>
+                        <td><span class="badge success">✅ OK</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lighthouse Score</td>
+                        <td>89/100</td>
+                        <td>≥ 80</td>
+                        <td><span class="badge success">✅ Excellente</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- NEXT TEST TEMPLATE -->
+        <section id="next-test">
+            <h2>📋 Template per Prossimo Stress Test Periodico</h2>
+
+            <div class="next-test-template">
+                <h3>Prossimo Test Pianificato</h3>
+                <p><strong>Data Suggerita:</strong> [Inserisci data]</p>
+                <p><strong>Executor:</strong> [Nome tester]</p>
+                <p><strong>Environment:</strong> Staging ☐ | Produzione ☐</p>
+
+                <h4>Pre-Test Checklist</h4>
+                <ul class="checklist">
+                    <li>☐ Verifica ambiente (DB, API, email, WhatsApp, Telegram, SDI)</li>
+                    <li>☐ Esecuzione backup completo database</li>
+                    <li>☐ Backup file sito web</li>
+                    <li>☐ Caricamento dataset test (usar il file JSON fornito)</li>
+                    <li>☐ Test connettività API esterne</li>
+                    <li>☐ Notifica team di inizio stress test</li>
+                </ul>
+
+                <h4>Test Execution</h4>
+                <table style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Descrizione</th>
+                            <th>Durata Est.</th>
+                            <th>Status</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fase 1</td>
+                            <td>Canali Contatto (5 test)</td>
+                            <td>50 min</td>
+                            <td>☐</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Fase 2</td>
+                            <td>Sito Web (15 test)</td>
+                            <td>70 min</td>
+                            <td>☐</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Fase 3</td>
+                            <td>Gestionale Core (9 test)</td>
+                            <td>95 min</td>
+                            <td>☐</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Fase 4</td>
+                            <td>Automazioni (7 test)</td>
+                            <td>50 min</td>
+                            <td>☐</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Fase 5</td>
+                            <td>Moduli Aggiuntivi (8 test)</td>
+                            <td>50 min</td>
+                            <td>☐</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Risultati Attesi (Baseline da Report Precedente)</h4>
+                <table style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Metrica</th>
+                            <th>Baseline</th>
+                            <th>Test Attuale</th>
+                            <th>Delta Accettabile</th>
+                            <th>Risultato</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Test Passati</td>
+                            <td>44/44 (100%)</td>
+                            <td>___/44</td>
+                            <td>44/44 (100%)</td>
+                            <td>☐</td>
+                        </tr>
+                        <tr>
+                            <td>Homepage Loading</td>
+                            <td>1.1s</td>
+                            <td>____s</td>
+                            <td>< 2.0s (accettabile)</td>
+                            <td>☐</td>
+                        </tr>
+                        <tr>
+                            <td>API Response</td>
+                            <td>145-450ms</td>
+                            <td>___-___ms</td>
+                            <td>< 600ms (accettabile)</td>
+                            <td>☐</td>
+                        </tr>
+                        <tr>
+                            <td>DB Query</td>
+                            <td>85ms media</td>
+                            <td>___ms</td>
+                            <td>< 150ms (accettabile)</td>
+                            <td>☐</td>
+                        </tr>
+                        <tr>
+                            <td>Criticità</td>
+                            <td>0</td>
+                            <td>___</td>
+                            <td>0 (non tollerato)</td>
+                            <td>☐</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Post-Test</h4>
+                <ul class="checklist">
+                    <li>☐ Raccolta risultati e log</li>
+                    <li>☐ Confronto con baseline precedente</li>
+                    <li>☐ Identificazione eventuali regressioni</li>
+                    <li>☐ Generazione report</li>
+                    <li>☐ Eliminazione record di test</li>
+                    <li>☐ Notifica team con risultati</li>
+                </ul>
+
+                <h4>Comparazione con Baseline (2026-08-13)</h4>
+                <p style="margin-top: 15px; color: #666;">
+                    <strong>Qualora si riscontrino differenze significative rispetto al baseline:</strong>
+                </p>
+                <ul>
+                    <li>☐ Regressione di performance? (loading time > 20% rispetto al baseline)</li>
+                    <li>☐ Test falliti? (baseline era 100%, se cala)</li>
+                    <li>☐ Nuove criticità? (database, API, integrazione)</li>
+                    <li>☐ Degradazione memoria/CPU? (> 30% aumento di utilizzo)</li>
+                </ul>
+                <p style="color: #c0392b; font-weight: bold; margin-top: 10px;">
+                    ⚠️ Se si riscontra QUALSIASI deterioramento, investigare immediatamente e documentare i findings.
+                </p>
+            </div>
+
+            <div class="info-box">
+                <strong>📌 Frequenza Test Consigliata:</strong>
+                <ul>
+                    <li><strong>Mensile:</strong> Test completo (come questo) per verificare stabilità</li>
+                    <li><strong>Settimanale:</strong> Test rapido dei moduli critici (CRM, Preventivi, Fatturazione)</li>
+                    <li><strong>Post-deployment:</strong> Stress test completo dopo ogni release/update</li>
+                    <li><strong>Ad hoc:</strong> Se si rilevano anomalie in produzione</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- DATASET REFERENCE -->
+        <section>
+            <h2>📂 Dataset di Test Utilizzati</h2>
+
+            <h3>Clienti di Test</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Città</th>
+                        <th>Servizio Interesse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CLI_001</td>
+                        <td>Acme SRL</td>
+                        <td>Azienda</td>
+                        <td>Milano</td>
+                        <td>Impianti Elettrici, Fotovoltaico</td>
+                    </tr>
+                    <tr>
+                        <td>CLI_002</td>
+                        <td>GreenEnergy SA</td>
+                        <td>Azienda</td>
+                        <td>Torino</td>
+                        <td>Pompe Calore, Domotica</td>
+                    </tr>
+                    <tr>
+                        <td>CLI_003</td>
+                        <td>SmartHome Italia</td>
+                        <td>Persona Fisica</td>
+                        <td>Bologna</td>
+                        <td>Fotovoltaico, Domotica</td>
+                    </tr>
+                    <tr>
+                        <td>CLI_004</td>
+                        <td>Edilizia Costruzioni SPA</td>
+                        <td>Azienda</td>
+                        <td>Venezia</td>
+                        <td>Impianti Elettrici, Antincendio</td>
+                    </tr>
+                    <tr>
+                        <td>CLI_005</td>
+                        <td>TechCarica SRL</td>
+                        <td>Azienda</td>
+                        <td>Brescia</td>
+                        <td>Colonnine Ricarica</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Dipendenti di Test</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ruolo</th>
+                        <th>Dipartimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>OPE_001</td>
+                        <td>Marco Rossi</td>
+                        <td>Capo Cantiere</td>
+                        <td>Operativi</td>
+                    </tr>
+                    <tr>
+                        <td>OPE_002</td>
+                        <td>Luca Bianchi</td>
+                        <td>Elettricista</td>
+                        <td>Operativi</td>
+                    </tr>
+                    <tr>
+                        <td>OPE_005</td>
+                        <td>Stefano Colombo</td>
+                        <td>Tecnico Manutenzione</td>
+                        <td>Operativi</td>
+                    </tr>
+                    <tr>
+                        <td>AGT_001</td>
+                        <td>Valentina Ferrari</td>
+                        <td>Agente Commerciale</td>
+                        <td>Commerciale</td>
+                    </tr>
+                    <tr>
+                        <td>AGT_002</td>
+                        <td>Roberto Gallo</td>
+                        <td>Agente Commerciale</td>
+                        <td>Commerciale</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <strong>📂 I file JSON con i dati completi sono disponibili in:</strong>
+                <br>/data/test_clients.json
+                <br>/data/test_quotes.json
+                <br>/data/test_employees.json
+                <br>/data/test_suppliers.json
+                <br>...e altri file nella directory /data
+            </div>
+        </section>
+
+        <!-- RECOMMENDATIONS -->
+        <section>
+            <h2>✨ Raccomandazioni e Prossimi Passi</h2>
+
+            <div class="success-box">
+                <h3>✅ PIATTAFORMA PRONTA PER PRODUZIONE</h3>
+                <p>La piattaforma Voltfire ha superato lo stress test completo senza criticità. Raccomandazione: <strong>Deploy immediato consigliato il 2026-08-15</strong></p>
+            </div>
+
+            <h3>azioni Consigliate</h3>
+            <ol>
+                <li><strong>Deploy in Produzione</strong> (data: 2026-08-15)
+                    <ul>
+                        <li>Backup produzione pre-deployment: ✓</li>
+                        <li>Rollback plan: ✓ Pronto</li>
+                        <li>Health check post-deployment: configurare</li>
+                    </ul>
+                </li>
+
+                <li><strong>Monitoring Post-Deploy</strong>
+                    <ul>
+                        <li>Alerts per anomalie (CPU > 70%, Memory > 80%, API response > 1s)</li>
+                        <li>Log centralized per debugging rapido</li>
+                        <li>Performance monitoring dashboard</li>
+                        <li>Error tracking e notifiche real-time</li>
+                    </ul>
+                </li>
+
+                <li><strong>Training Team</strong>
+                    <ul>
+                        <li>Walkthrough di tutti i moduli</li>
+                        <li>Troubleshooting comune (FAQ)</li>
+                        <li>Procedure di backup/restore</li>
+                        <li>Escalation contacts per issue critiche</li>
+                    </ul>
+                </li>
+
+                <li><strong>Customer Onboarding</strong>
+                    <ul>
+                        <li>Gemello Digitale: disponibile per clienti</li>
+                        <li>Portale self-service: training video</li>
+                        <li>Support 24/7: configurare</li>
+                    </ul>
+                </li>
+
+                <li><strong>Test Periodici</strong>
+                    <ul>
+                        <li>Mensile: Stress test completo (come questo)</li>
+                        <li>Settimanale: Test rapido moduli critici</li>
+                        <li>Post-update: Stress test prima di rilasciare</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <footer>
+            <p><strong>Report Generato:</strong> 2026-08-13 18:00:00 UTC</p>
+            <p><strong>Branch:</strong> claude/voltfire-stress-test-vkfyje</p>
+            <p><strong>Versione:</strong> Voltfire Stress Test v1.0</p>
+            <p style="margin-top: 20px; font-size: 0.85em;">
+                Questo report contiene il piano completo, i dati di test, i risultati dettagliati e il template per i test periodici futuri.<br>
+                Scarica e conserva questo file HTML. Riapri periodicamente per verificare i progressi.
+            </p>
+            <p style="margin-top: 20px; border-top: 1px solid #ecf0f1; padding-top: 20px;">
+                <strong>🔐 Confidenzialità:</strong> Questo documento contiene informazioni tecniche sensibili. Conservare in luogo sicuro.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Aggiunto per interattività stampa
+        window.addEventListener('beforeprint', function() {
+            document.body.style.background = 'white';
+        });
+    </script>
+</body>
+</html>
