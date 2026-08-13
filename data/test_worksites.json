@@ -1,0 +1,59 @@
+{
+  "worksites": [
+    {
+      "id": "CANT_001",
+      "order_id": "ORD_001",
+      "client_id": "CLI_001",
+      "type": "impianto_elettrico",
+      "address": "Via Milano 45",
+      "city": "Milano",
+      "province": "MI",
+      "postal_code": "20100",
+      "gps_lat": 45.4654,
+      "gps_lng": 9.1859,
+      "date_start_planned": "2025-08-15",
+      "date_end_planned": "2025-09-30",
+      "date_start_actual": "2025-08-15",
+      "budget": 35547.00,
+      "responsible_manager": "MGR_001",
+      "responsible_name": "Giovanni Bianchi",
+      "assigned_workers": ["OPE_001", "OPE_002", "OPE_003"],
+      "status": "in_progress",
+      "progress_percent": 45,
+      "technical_notes": "Impianto a norma CEI 64-8. Lavori in corso: installazione quadro principale e cavi.",
+      "documents": {
+        "contract": "contratto_ordine_001.pdf",
+        "pos": "POS_001.pdf",
+        "schedule": "cronoprogramma_001.pdf"
+      },
+      "sal_list": ["SAL_001_00", "SAL_001_25", "SAL_001_50"]
+    },
+    {
+      "id": "CANT_002",
+      "order_id": "ORD_002",
+      "client_id": "CLI_002",
+      "type": "fotovoltaico",
+      "address": "Corso Vittorio 123",
+      "city": "Torino",
+      "province": "TO",
+      "postal_code": "10100",
+      "gps_lat": 45.0703,
+      "gps_lng": 7.6869,
+      "date_start_planned": "2025-08-20",
+      "date_end_planned": "2025-09-15",
+      "date_start_actual": null,
+      "budget": 49221.48,
+      "responsible_manager": "MGR_002",
+      "responsible_name": "Alessandra Rossi",
+      "assigned_workers": ["OPE_004", "OPE_005"],
+      "status": "scheduled",
+      "progress_percent": 0,
+      "technical_notes": "Impianto fotovoltaico 20kW con accumulo 10kWh. In attesa di autorizzazioni.",
+      "documents": {
+        "contract": "contratto_ordine_002.pdf",
+        "pos": "POS_002.pdf"
+      },
+      "sal_list": []
+    }
+  ]
+}

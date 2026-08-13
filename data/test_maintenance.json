@@ -1,0 +1,63 @@
+{
+  "maintenance_items": [
+    {
+      "id": "MAN_001",
+      "client_id": "CLI_001",
+      "type": "preventiva",
+      "frequency": "annuale",
+      "last_execution": "2025-06-15",
+      "next_scheduled": "2025-09-15",
+      "description": "Manutenzione preventiva impianto elettrico",
+      "technical_check": [
+        "Verifica quadro principale",
+        "Test differenziale",
+        "Controllo isolamento",
+        "Verifica presa terra"
+      ],
+      "estimated_hours": 4,
+      "estimated_cost": 350.00,
+      "assigned_technician": "OPE_001",
+      "status": "scheduled",
+      "notes": "Controllo annuale programmato. Cliente contattato per conferma data.",
+      "priority": "normale"
+    },
+    {
+      "id": "MAN_002",
+      "client_id": "CLI_002",
+      "type": "ordinaria",
+      "description": "Pulizia e controllo impianto fotovoltaico",
+      "technical_check": [
+        "Pulizia moduli",
+        "Controllo cavi",
+        "Verifica inverter",
+        "Test produzione"
+      ],
+      "estimated_hours": 3,
+      "estimated_cost": 250.00,
+      "assigned_technician": "OPE_005",
+      "status": "scheduled",
+      "notes": "Manutenzione ordinaria bimestrale. Allerta: produzione in calo ultimi 7 giorni.",
+      "priority": "media",
+      "appointment_date": "2025-08-15",
+      "appointment_time": "09:00"
+    },
+    {
+      "id": "MAN_003",
+      "client_id": "CLI_001",
+      "type": "straordinaria",
+      "description": "Guasto interruttore principale - intervento urgente",
+      "technical_check": [
+        "Diagnosi guasto",
+        "Sostituzione interruttore",
+        "Test funzionamento"
+      ],
+      "estimated_hours": 2,
+      "estimated_cost": 400.00,
+      "assigned_technician": "OPE_002",
+      "status": "in_progress",
+      "notes": "Chiamata cliente 2025-08-13 ore 14:30. Impianto parzialmente fuori servizio.",
+      "priority": "alta",
+      "created_date": "2025-08-13"
+    }
+  ]
+}

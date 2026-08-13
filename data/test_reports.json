@@ -1,0 +1,100 @@
+{
+  "reports": [
+    {
+      "id": "RAP_001_20250810",
+      "worksite_id": "CANT_001",
+      "date": "2025-08-10",
+      "shift": "mattina",
+      "workers": [
+        {
+          "id": "OPE_001",
+          "name": "Marco Rossi",
+          "hours": 8,
+          "hourly_rate": 50.00,
+          "role": "Capo cantiere"
+        },
+        {
+          "id": "OPE_002",
+          "name": "Luca Bianchi",
+          "hours": 8,
+          "hourly_rate": 45.00,
+          "role": "Elettricista"
+        },
+        {
+          "id": "OPE_003",
+          "name": "Paolo Verdi",
+          "hours": 6,
+          "hourly_rate": 40.00,
+          "role": "Apprendista"
+        }
+      ],
+      "materials_used": [
+        {
+          "item_code": "MAT_001",
+          "description": "Cavi rame 4mm²",
+          "quantity": 500,
+          "unit": "metro",
+          "unit_cost": 2.50
+        },
+        {
+          "item_code": "MAT_002",
+          "description": "Interruttori automatici",
+          "quantity": 20,
+          "unit": "pezzo",
+          "unit_cost": 45.00
+        }
+      ],
+      "transport_cost": 0,
+      "meal_allowance": 45.00,
+      "accommodation_allowance": 0,
+      "other_costs": 0,
+      "description": "Installazione quadro principale e cavi principali. Lavori svolti in orario regolare.",
+      "photos": ["foto_cantiere_1.jpg", "foto_cantiere_2.jpg"],
+      "signed_by_worker_id": "OPE_001",
+      "signed_at": "2025-08-10T17:30:00",
+      "signature_digital": "SGN_001_BASE64_DATA",
+      "status": "signed"
+    },
+    {
+      "id": "RAP_001_20250811",
+      "worksite_id": "CANT_001",
+      "date": "2025-08-11",
+      "shift": "mattina",
+      "workers": [
+        {
+          "id": "OPE_001",
+          "name": "Marco Rossi",
+          "hours": 8,
+          "hourly_rate": 50.00,
+          "role": "Capo cantiere"
+        },
+        {
+          "id": "OPE_002",
+          "name": "Luca Bianchi",
+          "hours": 8,
+          "hourly_rate": 45.00,
+          "role": "Elettricista"
+        }
+      ],
+      "materials_used": [
+        {
+          "item_code": "MAT_003",
+          "description": "Prese e interruttori",
+          "quantity": 60,
+          "unit": "pezzo",
+          "unit_cost": 15.00
+        }
+      ],
+      "transport_cost": 0,
+      "meal_allowance": 30.00,
+      "accommodation_allowance": 0,
+      "other_costs": 0,
+      "description": "Installazione prese e interruttori nei vari ambienti. Avanzamento normale.",
+      "photos": ["foto_cantiere_3.jpg"],
+      "signed_by_worker_id": "OPE_001",
+      "signed_at": "2025-08-11T17:30:00",
+      "signature_digital": "SGN_002_BASE64_DATA",
+      "status": "signed"
+    }
+  ]
+}

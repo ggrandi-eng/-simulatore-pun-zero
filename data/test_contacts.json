@@ -1,0 +1,106 @@
+{
+  "contact_channels": {
+    "email": {
+      "test_inbox": "test@voltfire.it",
+      "test_sender_1": "cliente1@example.com",
+      "test_sender_2": "cliente2@example.com",
+      "test_message_1": "Richiesta informazioni fotovoltaico",
+      "test_message_2": "Preventivo per impianto elettrico"
+    },
+    "whatsapp": {
+      "company_number": "+39 340 1234567",
+      "test_numbers": [
+        {
+          "number": "+39 333 5551234",
+          "name": "Marco Test",
+          "persona": "imprenditore azienda"
+        },
+        {
+          "number": "+39 333 5552345",
+          "name": "Francesca Test",
+          "persona": "responsabile impianti"
+        },
+        {
+          "number": "+39 333 5553456",
+          "name": "Stefano Test",
+          "persona": "privato abitazione"
+        }
+      ],
+      "test_messages": [
+        "Buongiorno, mi servono informazioni su un impianto fotovoltaico",
+        "Potete fare un preventivo per efficientamento energetico?",
+        "Abbiamo bisogno di manutenzione impianto elettrico"
+      ]
+    },
+    "telegram": {
+      "bot_username": "@voltfire_bot",
+      "test_users": [
+        {
+          "user_id": "test_tg_001",
+          "name": "Test User Telegram 1",
+          "message": "Richiesta informazioni domotica KNX"
+        },
+        {
+          "user_id": "test_tg_002",
+          "name": "Test User Telegram 2",
+          "message": "Vorremmo un preventivo per colonnine di ricarica"
+        }
+      ]
+    },
+    "chatbot": {
+      "platforms": ["website_homepage", "website_services", "website_contact"],
+      "test_scenarios": [
+        {
+          "page": "homepage",
+          "message": "Ciao, voglio informazioni su fotovoltaico e accumulo",
+          "expected_intent": "fotovoltaico_inquiry"
+        },
+        {
+          "page": "services_electrical",
+          "message": "Mi serve rifare l'impianto elettrico",
+          "expected_intent": "electrical_quote"
+        },
+        {
+          "page": "contact",
+          "message": "Richiedo un sopralluogo",
+          "expected_intent": "site_visit_request"
+        }
+      ]
+    },
+    "form_submissions": {
+      "quote_form": {
+        "url": "https://voltfire.it/richiedi-preventivo",
+        "test_data": [
+          {
+            "name": "Test Azienda 1",
+            "email": "test1@example.com",
+            "phone": "+39 333 5551111",
+            "service": "impianti_elettrici",
+            "description": "Rifacimento completo impianto",
+            "file_attachment": "sample_invoice_1.pdf"
+          },
+          {
+            "name": "Test Azienda 2",
+            "email": "test2@example.com",
+            "phone": "+39 333 5552222",
+            "service": "fotovoltaico",
+            "description": "Impianto 15kW con accumulo",
+            "file_attachment": "sample_invoice_2.pdf"
+          }
+        ]
+      },
+      "maintenance_request": {
+        "url": "https://voltfire.it/richiedi-manutenzione",
+        "test_data": [
+          {
+            "client_name": "Test Manutenzione 1",
+            "email": "maint1@example.com",
+            "phone": "+39 333 5553333",
+            "maintenance_type": "preventiva",
+            "service_type": "fotovoltaico"
+          }
+        ]
+      }
+    }
+  }
+}

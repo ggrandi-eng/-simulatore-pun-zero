@@ -1,0 +1,209 @@
+{
+  "quotes": [
+    {
+      "id": "QUOT_001",
+      "client_id": "CLI_001",
+      "date_created": "2025-08-01",
+      "date_valid_until": "2025-09-01",
+      "type": "impianto_elettrico",
+      "description": "Rifacimento completo impianto elettrico stabilimento produttivo",
+      "location": "Via Milano 45, Milano",
+      "lines": [
+        {
+          "item": "Quadro elettrico principale",
+          "quantity": 1,
+          "unit": "pezzo",
+          "unit_price": 8500.00,
+          "discount_percent": 0,
+          "total": 8500.00
+        },
+        {
+          "item": "Cavi rame 4mm² (metro)",
+          "quantity": 2000,
+          "unit": "metro",
+          "unit_price": 2.50,
+          "discount_percent": 5,
+          "total": 4750.00
+        },
+        {
+          "item": "Interruttori automatici (pezzi)",
+          "quantity": 50,
+          "unit": "pezzo",
+          "unit_price": 45.00,
+          "discount_percent": 0,
+          "total": 2250.00
+        },
+        {
+          "item": "Manodopera installazione (ore)",
+          "quantity": 160,
+          "unit": "ora",
+          "unit_price": 65.00,
+          "discount_percent": 0,
+          "total": 10400.00
+        },
+        {
+          "item": "Certificazione e test (forfettario)",
+          "quantity": 1,
+          "unit": "forfettario",
+          "unit_price": 1500.00,
+          "discount_percent": 0,
+          "total": 1500.00
+        }
+      ],
+      "subtotal": 28900.00,
+      "discount_global_percent": 0,
+      "vat_percent": 23,
+      "vat_amount": 6647.00,
+      "total": 35547.00,
+      "status": "draft",
+      "assigned_to_agent": "AGT_001",
+      "technical_notes": "Impianto a norma CEI 64-8. Quadro principale con protezione differenziale. Certificazione ICEQRF.",
+      "attachments": ["impianto_schema_dwg.pdf", "preventivo_dettagliato.pdf"]
+    },
+    {
+      "id": "QUOT_002",
+      "client_id": "CLI_002",
+      "date_created": "2025-07-15",
+      "date_valid_until": "2025-08-15",
+      "type": "fotovoltaico",
+      "description": "Impianto fotovoltaico 20kW con accumulo 10kWh",
+      "location": "Corso Vittorio 123, Torino",
+      "lines": [
+        {
+          "item": "Moduli fotovoltaici 400W (pezzi)",
+          "quantity": 50,
+          "unit": "pezzo",
+          "unit_price": 280.00,
+          "discount_percent": 10,
+          "total": 12600.00
+        },
+        {
+          "item": "Inverter ibrido trifase 20kW",
+          "quantity": 1,
+          "unit": "pezzo",
+          "unit_price": 6800.00,
+          "discount_percent": 5,
+          "total": 6460.00
+        },
+        {
+          "item": "Sistema di accumulo 10kWh",
+          "quantity": 1,
+          "unit": "pezzo",
+          "unit_price": 8500.00,
+          "discount_percent": 0,
+          "total": 8500.00
+        },
+        {
+          "item": "Strutture di montaggio",
+          "quantity": 1,
+          "unit": "forfettario",
+          "unit_price": 4200.00,
+          "discount_percent": 0,
+          "total": 4200.00
+        },
+        {
+          "item": "Cavi, quadri, protezioni",
+          "quantity": 1,
+          "unit": "forfettario",
+          "unit_price": 3100.00,
+          "discount_percent": 0,
+          "total": 3100.00
+        },
+        {
+          "item": "Manodopera installazione (giorni)",
+          "quantity": 12,
+          "unit": "giorno",
+          "unit_price": 800.00,
+          "discount_percent": 0,
+          "total": 9600.00
+        },
+        {
+          "item": "Pratiche e autorizzazioni",
+          "quantity": 1,
+          "unit": "forfettario",
+          "unit_price": 1200.00,
+          "discount_percent": 0,
+          "total": 1200.00
+        }
+      ],
+      "subtotal": 45660.00,
+      "discount_global_percent": 2,
+      "discount_global_amount": 913.20,
+      "vat_percent": 10,
+      "vat_amount": 4474.68,
+      "total": 49221.48,
+      "status": "sent_to_client",
+      "assigned_to_agent": "AGT_002",
+      "technical_notes": "Impianto con scambio sul posto. Monitoraggio via app mobile. Garanzia 25 anni moduli.",
+      "attachments": ["layout_impianto.pdf", "rendimento_annuale.pdf", "incentivi_2025.pdf"]
+    },
+    {
+      "id": "QUOT_003",
+      "client_id": "CLI_003",
+      "date_created": "2025-08-05",
+      "date_valid_until": "2025-09-05",
+      "type": "domotica_knx",
+      "description": "Sistema domotica KNX completo abitazione",
+      "location": "Via Roma 567, Bologna",
+      "lines": [
+        {
+          "item": "Centralina KNX",
+          "quantity": 1,
+          "unit": "pezzo",
+          "unit_price": 1200.00,
+          "discount_percent": 0,
+          "total": 1200.00
+        },
+        {
+          "item": "Moduli I/O KNX (pezzi)",
+          "quantity": 8,
+          "unit": "pezzo",
+          "unit_price": 350.00,
+          "discount_percent": 15,
+          "total": 2380.00
+        },
+        {
+          "item": "Sensori movimento + illuminamento (pezzi)",
+          "quantity": 6,
+          "unit": "pezzo",
+          "unit_price": 180.00,
+          "discount_percent": 0,
+          "total": 1080.00
+        },
+        {
+          "item": "Termostati intelligenti (pezzi)",
+          "quantity": 4,
+          "unit": "pezzo",
+          "unit_price": 220.00,
+          "discount_percent": 0,
+          "total": 880.00
+        },
+        {
+          "item": "Manodopera installazione e programmazione (ore)",
+          "quantity": 60,
+          "unit": "ora",
+          "unit_price": 70.00,
+          "discount_percent": 0,
+          "total": 4200.00
+        },
+        {
+          "item": "App mobile + supporto tecnico 12 mesi",
+          "quantity": 1,
+          "unit": "forfettario",
+          "unit_price": 500.00,
+          "discount_percent": 0,
+          "total": 500.00
+        }
+      ],
+      "subtotal": 10240.00,
+      "discount_global_percent": 0,
+      "vat_percent": 23,
+      "vat_amount": 2355.20,
+      "total": 12595.20,
+      "status": "draft",
+      "assigned_to_agent": "AGT_001",
+      "technical_notes": "Sistema aperto e flessibile. Espandibile in futuro. Controllo luci, riscaldamento, antifurto da smartphone.",
+      "attachments": ["sistema_knx_schema.pdf"]
+    }
+  ]
+}
